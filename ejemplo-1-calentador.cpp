@@ -21,11 +21,15 @@ Calentador::Calentador()    {
 }
 
 void Calentador::calentar() {
-    temperatura += 5 ;
+    if( temperatura + incremento <= 30 )    {
+        temperatura += incremento ;
+    }
 }
 
 void Calentador::enfriar()  {
-    temperatura -= 5 ;
+    if( temperatura - incremento >= -10 )   {
+        temperatura -= incremento ;
+    }
 }
 
 void Calentador::imprimeTemperatura()   {
@@ -40,8 +44,10 @@ int main()  {
     Calentador c1 ; //No necesita new Class() . Si no, se tiene que liberar despues la memoria.
     Calentador c2 ;
     
-    c1.calentar();
-    c2.enfriar();
+    for( int i = 0 ; i < 10 ; i++ ) {
+        c1.calentar();
+        c2.enfriar();
+    }
     
     c1.imprimeTemperatura();
     c2.imprimeTemperatura();
