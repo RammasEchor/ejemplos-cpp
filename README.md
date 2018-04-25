@@ -1,2 +1,2 @@
 # ejemplos-cpp
-Algunos ejeplos de c++
+Algunos ejemplos de c++
