@@ -10,7 +10,8 @@ class Calentador    {
         Calentador();
         void calentar();
         void enfriar();
-        void imprimeTemperatura();
+        void imprimeCelsius() const ;
+        void imprimeFahrenheit() const ;
         int accedeTemperatura() const ;
     
 }; //punto y coma obligatorio
@@ -32,12 +33,18 @@ void Calentador::enfriar()  {
     }
 }
 
-void Calentador::imprimeTemperatura()   {
+void Calentador::imprimeCelsius() const  {
     std::cout << "La temperatura es: " << temperatura << std::endl ;
 }
 
 int Calentador::accedeTemperatura() const   {
     return( temperatura );
+}
+
+void Calentador::imprimeFahrenheit() const   {
+    float fahrenheit = temperatura * 1.8 + 32 ;
+    std::cout << "La temperatura es: " << fahrenheit 
+                << " °F" << std::endl ;
 }
 
 int main()  {
@@ -49,6 +56,10 @@ int main()  {
         c2.enfriar();
     }
     
-    c1.imprimeTemperatura();
-    c2.imprimeTemperatura();
+    c1.imprimeCelsius();
+    c2.imprimeCelsius();
+    
+    c1.imprimeFahrenheit();
+    c2.imprimeFahrenheit();
+    
 }
