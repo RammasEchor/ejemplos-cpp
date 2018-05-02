@@ -10,11 +10,12 @@ class Calentador    {
         
     public:
         Calentador( int min, int max, int temperatura = 0 );
-        void calentar();
-        void enfriar();
+        void operator++();
+        void operator--();
         void imprimeCelsius() const ;
         void imprimeFahrenheit() const ;
         int accedeTemperatura() const ;
+        bool operator==( Calentador otro ); //sobrecarga de metodo miembro
     
 }; //punto y coma obligatorio
 
@@ -38,13 +39,13 @@ Calentador::Calentador( int min, int max, int temperatura )    {
     this->max = max ;
 }
 
-void Calentador::calentar() {
+void Calentador::operator++() {
     if( temperatura + incremento <= this->max )    {
         temperatura += incremento ;
     }
 }
 
-void Calentador::enfriar()  {
+void Calentador::operator--()  {
     if( temperatura - incremento >= this->min )   {
         temperatura -= incremento ;
     }
@@ -64,16 +65,32 @@ void Calentador::imprimeFahrenheit() const   {
                 << " °F" << std::endl ;
 }
 
+bool Calentador::operator==( Calentador otro )  {
+    if( this->temperatura == otro.temperatura ) {
+        return( true );
+    }
+    else    {
+        return( false );
+    }
+}
+
 int main()  {
     
     //try {
     Calentador c1 { -10, 10,  } ; //No necesita new Class() . Si no, se tiene que liberar despues la memoria.
-    Calentador c2 { 30, 10, -10 } ;
+    Calentador c2 { 0, 30, 10 } ;
     
-    /*for( int i = 0 ; i < 10 ; i++ ) {
-        c1.calentar();
-        c2.enfriar();
-    }*/
+    for( int i = 0 ; i < 3 ; i++ ) {
+        ++c1; //ci.operator++();
+        --c2; //c2++ es equivalente a c2.operator--();
+    }
+    
+    if( c1 == c2 )  {
+        std::cout << "Iguales." << std::endl ;
+    }
+    else    {
+        std::cout << "Diferentes." << std::endl ;
+    }
     
     c1.imprimeCelsius();
     c2.imprimeCelsius();
