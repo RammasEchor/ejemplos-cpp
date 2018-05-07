@@ -82,7 +82,7 @@ int main()  {
     
     for( int i = 0 ; i < 3 ; i++ ) {
         ++c1; //ci.operator++();
-        --c2; //c2++ es equivalente a c2.operator--();
+        --c2; //--c2 es equivalente a c2.operator--();
     }
     
     if( c1 == c2 )  {

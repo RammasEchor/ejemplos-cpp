@@ -12,6 +12,9 @@ class Fraccion  {
         Fraccion operator*( Fraccion f1 );
         Fraccion operator/( Fraccion f1 );
         void imprimeFraccion();
+        
+    friend void operator<<( std::ostream &salida, Fraccion f );
+    friend void operator>>( std::istream &entrada, Fraccion &f );
 };
 
 Fraccion::Fraccion( int numerador, int denominador )  {
@@ -55,23 +58,27 @@ Fraccion Fraccion::operator/( Fraccion f1 )   {
     return( f3 );
 }
 
-void Fraccion::imprimeFraccion()   {
+/*void Fraccion::imprimeFraccion()   {
     int num = this->numerador ;
     int den = this->denominador ;
     std::cout << num << "/" << den << std::endl ;
+}*/
+
+void operator<<( std::ostream &salida, Fraccion f )     {
+    salida << f.numerador << "/" << f.denominador << std::endl ;
+}
+
+void operator>>( std::istream &entrada, Fraccion &f )    {
+    entrada >> f.numerador ;
+    entrada >> f.denominador ;
 }
 
 int main()
 {
- Fraccion f1{ 1, 2 };
- f1.imprimeFraccion();
+ Fraccion f1, f2, f3 ;
  
- Fraccion f2{ 3, 4 };
- f2.imprimeFraccion();
- 
- Fraccion f3{};
+ std::cin >> f1 ;
+ std::cin >> f2 ;
  f3 = f1 + f2 ;
- 
- f3.imprimeFraccion();
-    
+ std::cout << f3 ;
 }
