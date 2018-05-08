@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 
 class Polinomio {
     private:
@@ -9,6 +10,7 @@ class Polinomio {
     public:
         Polinomio( int coefCuadratico = 0, int coefLinear = 0, int terIndep = 0 );
         int operator()( int x );
+        float operator~();
         
     friend void operator<<( std::ostream &salida, Polinomio p );
     friend void operator>>( std::istream &entrada, Polinomio &p );
@@ -40,11 +42,20 @@ void operator>>( std::istream &entrada, Polinomio &p )  {
     entrada >> p.terIndep ;
 }
 
+float Polinomio::operator~()    {
+    float raiz ;
+    
+    raiz = ( ( -this->coefLinear ) + std::sqrt( ( this->coefLinear * this->coefLinear ) - ( 4 * this->coefCuadratico * this->coefLinear))) / 2 * ( this->coefCuadratico) ;
+    
+    return( raiz );
+}
+
 int main()
 {
     Polinomio p1 ;
     
     std::cin >> p1 ;
     std::cout << "El polinomio: " << p1 ;
-    std::cout << "Evaluado en 2 : " << p1( 2 ) ;
+    std::cout << "La raiz de p: " << ~p1 << std::endl ; //p.operator~();
+    std::cout << "Evaluado en 2: " << p1( 2 ) ;
 }
